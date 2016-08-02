@@ -32,6 +32,15 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
        
         // Handle user input in text field through a delegate
         nameTextField.delegate = self
+        
+        // set up views if editing an existing meal
+        
+        if let meal = meal {
+            navigationItem.title = meal.name
+            nameTextField.text = meal.name
+            photoImageView.image = meal.photo
+            ratingControl.rating = meal.rating
+        }
         checkValidMealName()
         
     }
@@ -75,8 +84,20 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     // MARK: Navigation
     
     @IBAction func cancel(sender: UIBarButtonItem) {
+        // Two different dismiss methods based on the mode of presentation
+        
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddMealMode {
         dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            navigationController!.popViewControllerAnimated(true)
+        }
+        
     }
+    
+    
+    
     // configure view controller before it's presented
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
