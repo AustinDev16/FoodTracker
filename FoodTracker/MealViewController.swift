@@ -9,27 +9,23 @@
 import UIKit
 
 class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     // MARK: Properties
     
     @IBOutlet weak var nameTextField: UITextField!
-   
-    
     @IBOutlet weak var photoImageView: UIImageView!
-    
     @IBOutlet weak var ratingControl: RatingControl!
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
-    /* 
-    This value is passed by 'MealTableViewController' from the segue or as part of a new meal
- */
+    
+    // This value is passed by 'MealTableViewController' from the segue or as part of a new meal
+    
     var meal: Meal?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         // Handle user input in text field through a delegate
         nameTextField.delegate = self
         
@@ -44,7 +40,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         checkValidMealName()
         
     }
-
+    
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         // Hide keyboard
@@ -89,7 +85,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
         
         if isPresentingInAddMealMode {
-        dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
         } else {
             navigationController!.popViewControllerAnimated(true)
         }
@@ -128,9 +124,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         
     }
-
-
-
-
+    
+    
+    
+    
 }
 
